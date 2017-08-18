@@ -1,0 +1,36 @@
+{
+  "name": "auto-perf-budget",
+  "version": "1.0.0",
+  "description": "Profile your web application automatically using headless chrome to ensure performance budgets are met.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "test:package": "node index.js --config test.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dj10dj100/auto-perf-budget.git"
+  },
+  "keywords": [
+    "automatic",
+    "performance",
+    "budget",
+    "chrome",
+    "headless",
+    "test",
+    "cases"
+  ],
+  "author": "Daniel Jenkins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dj10dj100/auto-perf-budget/issues"
+  },
+  "homepage": "https://github.com/dj10dj100/auto-perf-budget#readme",
+  "dependencies": {
+    "chromy": "^0.4.8",
+    "commander": "^2.11.0",
+    "exit": "^0.1.2",
+    "jsonfile": "^3.0.1",
+    "puppeteer": "^0.9.0"
+  }
+}
