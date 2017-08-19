@@ -1,11 +1,11 @@
 # auto-perf-budget
 Profile your web application automatically using headless chrome to ensure performance budgets are met.
 
-Measuring performance is hard, so this app is designed to automate checking if certain performance criteria are met. Can be run locally with HTML report or as command line interface. 
+Measuring website performance is hard, so this app is designed to automate checking if certain performance criteria are met. Can be run locally and generate HTML reports or as command line interface for adding to build pipelines, release steps.
 
-Auto-perf-budget opens specified URL's and checks against *your* defined performance budget values. 
+Auto-perf-budget opens specified URL's and checks against *your* defined performance budget values. Uses Chrome puppeteer and the built `window.navigation` metrics.
 
-Auto performance budget will report an error if your budget is exceeded.
+Auto performance budget will report an error if your website is performing outside of your budget.
 
 ### How to use:
 Run the app using this command:
@@ -100,7 +100,10 @@ Potential use-cases:
 - Automating screenshots of website;
 - Automate checking speed of website;
 - Cache warming of multiple pages;
-- Run after release to ensure pages work as expected.
+- Run after release and check recent changes aren't working against you.
+- Add to build pipeline on CI and check test envs.
+
+Loads more....?
 
 ### Output
 
@@ -113,6 +116,12 @@ Below is an example of output from cli:
 ![alt Output][OPHTML]
 
 [OPHTML]: img/html-report.png "HTML REPORT"
+
+
+@TODO Future Features:
+
+- Measuring resources on page and setting limits per asset.
+- Checking for more common performance bottlenecks, redirects, blocking scripts etc.
 
 MIT License
 
