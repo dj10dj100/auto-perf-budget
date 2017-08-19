@@ -1,6 +1,6 @@
 {
   "name": "auto-perf-budget",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Profile your web application automatically using headless chrome to ensure performance budgets are met.",
   "main": "index.js",
   "scripts": {
