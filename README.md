@@ -1,47 +1,29 @@
 # auto-perf-budget
-Profile your web application automatically using headless chrome to ensure performance budgets are met.
+Run tests against specified URL's to keep control of your browser based experience . 
 
-Measuring website performance is hard, so this app is designed to automate checking if certain performance criteria are met. Can be run locally and generate HTML reports or as command line interface for adding to build pipelines, release steps.
+*Set a performance budget and run, whenever you want..*
 
-Auto-perf-budget opens specified URL's and checks against *your* defined performance budget values. Uses Chrome puppeteer and the built `window.navigation` metrics.
+Measuring website performance is *hard work*, and Auto perf budget helps you profile your web site using a headless chrome browser to help you keep track of the answers to questions like this:
 
-Auto performance budget will report an error if your website is performing outside of your budget.
+> As a developer I want to know if my webpage is takes more than X ms to be interactive
+
+Auto perf budget can be run locally, generating HTML reports or as command line interface for adding to build pipelines or as pre/post release step.
+
+Auto perf budget opens specified URL's and checks against *your* defined performance budget values. It will report an error if your website is performing incorrectly.
+
 
 ### How to use:
 Run the app using this command:
-```
+```bash
   auto-perf-budget --config test.config.js
 ```
-argument config must be populated.
-```
+#### CLI Args:
+```bash
 --config <config-location>
 ```
-### Config;
+### Config:
 See example (test.config.js):
-
-```
-const screenshots = filename => ({
-  enabled: true,
-  fullPage: false,
-  type: 'jpeg',
-  quality: 80
-}); 
-```
-Extends the default values found in Chrome puppeteer
-[see screenshot here](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagescreenshotoptions)
-```
-const viewport = () => ({
-  width: 1600,
-  height: 2500,
-  deviceScaleFactor: 1,
-  isMobile: false,
-  hasTouch: false,
-  isLandscape: true
-}); 
-```
-Extends the default values found in Chrome puppeteer
-[see viewport here](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pageviewport)
-```
+```javascript
 module.exports = {
   urls: [
     {
@@ -75,17 +57,46 @@ module.exports = {
   }
 }
 ```
-Declare how you want the report to run:
+
+### Options
+
+#### `url.screenshots` : {object}
+```javascript
+const screenshots = filename => ({
+  enabled: true,
+  fullPage: false,
+  type: 'jpeg',
+  quality: 80
+}); 
 ```
-report: 'html' || 'cli'
+Specify screenshot settings for each URL in config. Extends the default values found in Chrome puppeteer
+[see screenshot here](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagescreenshotoptions)
+
+#### `url.viewport` : {object}
+```javascript
+const viewport = () => ({
+  width: 1600,
+  height: 2500,
+  deviceScaleFactor: 1,
+  isMobile: false,
+  hasTouch: false,
+  isLandscape: true
+}); 
+```
+Specify the viewport settings for each URL in config. Extends the default values found in Chrome puppeteer
+[see viewport here](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pageviewport)
+
+#### Report `{string}`
+``` javascript
+report: 'html' || 'cli' 
 ````
 `Html`: will open a html file with a report of each page and it's results.
 
 `Cli`: will show the results in the command line, an error will throw an exit code.
 
-### Setting performance budget
-Uses the chrome timeline dev tool data, this object can be set to check the values you want to benchmark against:
-```
+### Timeline : `{object}`
+Uses the `window.performance` information, configure this object to set the values you want to benchmark against:
+```javascript
   timeline: {
     pageComplete: 350, //ms
     responseTime: 100, //ms
@@ -103,7 +114,7 @@ Potential use-cases:
 - Run after release and check recent changes aren't working against you.
 - Add to build pipeline on CI and check test envs.
 
-Loads more....?
+Loads more.......
 
 ### Output
 
@@ -122,6 +133,8 @@ Below is an example of output from cli:
 
 - Measuring resources on page and setting limits per asset.
 - Checking for more common performance bottlenecks, redirects, blocking scripts etc.
+
+Uses Chrome puppeteer under the hood.
 
 MIT License
 
