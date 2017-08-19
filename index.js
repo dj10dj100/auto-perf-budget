@@ -1,63 +1,81 @@
 const exit = require('exit');
 const config = require('./src/configs');
+const Helpers = require('./src/helpers');
+const Stats = require('./src/stats');
 const puppeteer = require('puppeteer');
-
-
+const fs = require('fs-extra');
 
 
 const App = () => {
 
-    let RESPONSE_DATA = {
+    const jobName = `auto-perf-${Date.now()}`;
+    // Setup drop folder for any assets;
+    Helpers.setupDropFolder(jobName);
 
+    this.data = {
+        results: {}
     };
 
 
-    const processScreenshots = (options, name) => {
-        let opts = options;
-        return Object.assign(options, { path: `drop-folder/${options.path ? `${options.path}` : `${name}.png`}` })
-    };
+    /**
+     * 
+     * @param {*} browser 
+     * @param {*} item 
+     * @param {*} name 
+     */
+    const LoadPage = async (browser, item, name) => {
 
-    const utilizePage = async (browser, item, name) => {
-        let page = await browser.newPage();
+        if (!item.url) {
+            console.log(`No url found on ${item}`)
+        }
+
+        let page = await browser.newPage()
 
         if (item.emulate) {
-            const vp = await page.emulate(item.emulate);
+            const vp = await page.emulate(item.emulate)
         }
-        await page.goto(item.url);
+
+        await page.goto(item.url)
 
         if (item.screenshots) {
-            const sc = await page.screenshot(processScreenshots(item.screenshots, name));
+            console.log(`Taking screenshot: ${name}`);
+            if (item.viewport) {
+                await page.setViewport(item.viewport);
+            }
+            const sc = await page.screenshot(
+                Helpers.processScreenshots(item.screenshots, name, jobName)
+            )
         }
-        return await page.evaluate(() => {
-            //performance.getEntries()
-            return JSON.stringify(performance);
-        });
+
+        return await Stats.get(page, name);
     };
 
+    const responseData = {};
 
-    puppeteer.launch({
-        headless: false
-    }).then(
-        async browser => {
-            let performanceResults = {}
+    puppeteer
+        .launch({
+            headless: true
+        })
+
+        .then(async browser => {
+
             for (let item of config.urls) {
                 const name = `${item.id}-${Date.now()}`
-                const value = await utilizePage(browser, item, name);
-                performanceResults[name] = value;
+                const results = await LoadPage(browser, item, name);
+                responseData[name] = {
+                    results,
+                    item
+                };
             }
-
-            console.log(performanceResults);
             browser.close();
-        }
-        ).catch(
-        error => {
-            console.log(error);
+
+        })
+
+        .then(() => Stats.report(responseData))
+
+        .catch(error => {
+            console.log(error)
             exit(1)
-        });
+        })
 }
-module.exports = App();
-
-
-
-
-
+module.exports = App()
