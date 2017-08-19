@@ -7,8 +7,8 @@ const screenshots = filename => ({
 })
 
 const viewport = () => ({
-  width: 480,
-  height: 800,
+  width: 1600,
+  height: 900,
   deviceScaleFactor: 1,
   isMobile: true,
   hasTouch: false,
@@ -18,19 +18,19 @@ const viewport = () => ({
 module.exports = {
   urls: [
     {
-      id: 'crc',
-      url: "https://chainreactioncycles.com",
+      id: 'Google',
+      url: "https://google.com",
       screenshots: screenshots(),
       viewport: viewport()
     },
     {
-      id: 'ebay',
-      url: "https://ebay.com",
+      id: 'Bing',
+      url: "https://bing.com",
       screenshots: screenshots(),
       viewport: viewport()
     }
   ],
-  report: 'html',
+  report: 'cli',
   budget: {
     level: 'error',
     assets: {

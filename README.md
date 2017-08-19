@@ -105,16 +105,14 @@ Potential use-cases:
 ### Output
 
 Below is an example of output from cli:
-|Measurement|Value|Budget|%|Status|
-|--- |--- |--- |--- |--- |
-|pageComplete|1096ms|350ms|313%|Error - ❌|
-|responseTime|547ms|100ms|547%|Error - ❌|
-|domComplete|818ms|500ms|163%|Error - ❌|
-|dns|0ms|100ms|0%|OK - ✅|
-|ttfb|263ms|1000ms|26%|OK - ✅|
-|tti|539ms|1000ms|53%|OK - ✅|
+ 
+![alt Output][OP]
 
+[OP]: img/output.png "Logo Title Text 2"
+ 
+![alt Output][OPHTML]
 
+[OPHTML]: img/html-report.png "HTML REPORT"
 
 MIT License
 
