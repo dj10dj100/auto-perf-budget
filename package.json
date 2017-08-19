@@ -27,16 +27,11 @@
   },
   "homepage": "https://github.com/dj10dj100/auto-perf-budget#readme",
   "dependencies": {
-    "chromy": "^0.4.8",
     "cli-table": "^0.3.1",
     "commander": "^2.11.0",
     "exit": "^0.1.2",
     "fs-extra": "^4.0.1",
-    "jsonfile": "^3.0.1",
     "opn": "^5.1.0",
     "puppeteer": "^0.9.0"
-  },
-  "devDependencies": {
-    "prettier": "^1.5.3"
   }
 }
