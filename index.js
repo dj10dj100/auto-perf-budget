@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const exit = require('exit');
 const config = require('./src/configs');
 const Helpers = require('./src/helpers');
