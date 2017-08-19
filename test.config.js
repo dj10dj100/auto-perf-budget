@@ -7,12 +7,12 @@ const screenshots = filename => ({
 })
 
 const viewport = () => ({
-  width: 1600,
-  height: 2500,
+  width: 480,
+  height: 800,
   deviceScaleFactor: 1,
-  isMobile: false,
+  isMobile: true,
   hasTouch: false,
-  isLandscape: true
+  isLandscape: false
 })
 
 module.exports = {
