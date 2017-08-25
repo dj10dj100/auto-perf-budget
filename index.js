@@ -6,17 +6,16 @@ const Stats = require('./src/stats');
 const puppeteer = require('puppeteer');
 const fs = require('fs-extra');
 
-
 const App = () => {
 
     const jobName = `auto-perf-${Date.now()}`;
+    
     // Setup drop folder for any assets;
     Helpers.setupDropFolder(jobName);
 
     this.data = {
         results: {}
     };
-
 
     /**
      * 
@@ -55,9 +54,8 @@ const App = () => {
 
     puppeteer
         .launch({
-            headless: true
+            headless: config.headless ? config.headless : false
         })
-
         .then(async browser => {
 
             for (let item of config.urls) {
@@ -68,6 +66,7 @@ const App = () => {
                     item
                 };
             }
+
             browser.close();
 
         })
@@ -75,7 +74,7 @@ const App = () => {
         .then(() => Stats.report(responseData))
 
         .catch(error => {
-            console.log(error)
+            console.log(error);
             exit(1)
         })
 }

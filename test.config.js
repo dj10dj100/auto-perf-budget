@@ -16,6 +16,7 @@ const viewport = () => ({
 })
 
 module.exports = {
+  headless: true,
   urls: [
     {
       id: 'Google',
@@ -33,10 +34,6 @@ module.exports = {
   report: 'cli',
   budget: {
     level: 'error',
-    assets: {
-      js: 200,//kb
-      css: 100//kb
-    },
     timeline: {
       pageComplete: 350,//ms
       responseTime: 100,//ms
