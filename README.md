@@ -1,8 +1,9 @@
-[![version][version-badge]][package]
-[![downloads][downloads-badge]][npmchart]
 
-[![Watch on GitHub][github-watch-badge]][github-watch]
-[![Star on GitHub][github-star-badge]][github-star]
+[![npm](https://img.shields.io/npm/dm/auto-perf-budget.svg)]()
+[![npm](https://img.shields.io/npm/dt/auto-perf-budget.svg)]()
+[![npm](https://img.shields.io/npm/v/auto-perf-budget.svg)]()
+[![npm](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Star)]()
+
 
 # auto-perf-budget
 Run tests against specified URL's to keep control of your browser based experience . 
