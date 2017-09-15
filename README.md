@@ -1,3 +1,9 @@
+[![version][version-badge]][package]
+[![downloads][downloads-badge]][npmchart]
+
+[![Watch on GitHub][github-watch-badge]][github-watch]
+[![Star on GitHub][github-star-badge]][github-star]
+
 # auto-perf-budget
 Run tests against specified URL's to keep control of your browser based experience . 
 
