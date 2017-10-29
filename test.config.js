@@ -31,7 +31,7 @@ module.exports = {
       viewport: viewport()
     }
   ],
-  report: 'cli',
+  report: 'html',
   budget: {
     level: 'error',
     timeline: {

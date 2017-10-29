@@ -6,12 +6,11 @@ const exit = require('exit');
 /**
  * 
  * @param {*} page 
- * @param {*} name 
+ * @param {*} name
  */
 const get = async (page, name) => {
 
     const perf = await page.evaluate(() => performance.toJSON());
-
     let perfData = await perf.timing;
 
     let stats = {
@@ -36,14 +35,14 @@ const get = async (page, name) => {
 
     }
 
-    // console.log(pageStats);
-    // pageStats.performanceEntries = await page.evaluate(() => {
-    //   return JSON.stringify(performance.getEntries());
-    // });
+    const performanceEntries = await page.evaluate(() => {
+        return JSON.stringify(performance.getEntries());
+    });
 
     return await {
         stats,
-        perf
+        perf,
+        performanceEntries
     };
 };
 

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "test:package": "node index.js --config test.config.js"
+    "test:package": "node index.js --config test.config.js",
+    "validate": "npm ls"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,10 @@
     "exit": "^0.1.2",
     "fs-extra": "^4.0.1",
     "opn": "^5.1.0",
-    "puppeteer": "^0.9.0",
+    "puppeteer": "^0.12.0",
     "shelljs": "^0.7.8"
+  },
+  "devDependencies": {
+    "window-performance-statistics": "^1.2.4"
   }
 }
